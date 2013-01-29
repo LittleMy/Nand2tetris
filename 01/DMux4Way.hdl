@@ -13,22 +13,22 @@
 
 
 CHIP DMux4Way {
-
-
+	
     IN in, sel[2];
 
     OUT a, b, c, d;
 
     PARTS:
- 
-    Not(in=sel[1], out=notsel);
-    DMux(in=in, sel=sel[0], a=w1, b=w2);
-    DMux(in=in, sel=sel[0], a=w3, b=w4);
-    And(a=w1, b=notsel, out=a);
-    And(a=w2, b=notsel, out=b);
-    And(a=w3, b=sel[1], out=c);
-    And(a=w4, b=sel[1], out=d);
-    
+
+	DMux(in=in, sel=sel[1], a=v, b=w);
+	DMux(in=v, sel=sel[0], a=a, b=b);
+	DMux(in=w, sel=sel[0], a=c, b=d);
   
-    // Put your code here.
+//    Not(in=sel[1], out=notsel);
+//   DMux(in=in, sel=sel[0], a=w1, b=w2);
+//  DMux(in=in, sel=sel[0], a=w3, b=w4);
+//   And(a=w1, b=notsel, out=a);
+//    And(a=w2, b=notsel, out=b);
+//    And(a=w3, b=sel[1], out=c);
+//    And(a=w4, b=sel[1], out=d);  // FUNCIONA, es solamente otra forma de hacerlo.
 }

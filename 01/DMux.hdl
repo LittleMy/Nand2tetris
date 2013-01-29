@@ -15,9 +15,11 @@ CHIP DMux {
     OUT a, b;
 
     PARTS:
-    Not(in=sel, out=notsel);
-    And(a=sel, b=in, out=b);
-    And(a=notsel, b=in, out=a);
-   
-    // Put your code here.
+	Not(in=sel, out=notsel);
+	And(a=in, b=notsel, out=a);
+	And(a=in, b=sel, out=b);    // Put your code here.
+	// Not(in=sel, out=notsel);
+	// And(p=in, q=notsel, out=a); //p y q NO pueden ser nombres de pines de AND
+	// And(p=in, q=sel, out=b);    // NO confundir el nombre de las salidas a y b, con el nombre de los pines a y b del AND
+
 }

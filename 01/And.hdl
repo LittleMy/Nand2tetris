@@ -12,7 +12,7 @@ CHIP And {
     OUT out;
 
     PARTS:
-    Nand(a=a, b=b, out=v);
-    Not(in=v, out=out);
+	Nand(a=a, b=b, out=w);
+	Not(in=w,out=out);
     // Put your code here.
 }

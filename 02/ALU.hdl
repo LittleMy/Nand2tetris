@@ -49,4 +49,38 @@ CHIP ALU {
 
     PARTS:
     // Put your code here.
+
+// Si zx=1 entonces hace x=0
+	Mux16(a=x, b=false, sel=zx, out=x1);
+// Si nx=1 entonces hace x=!x 
+	Not16(in=x1, out=nx1);
+	Mux16(a=x1, b=nx1, sel=nx, out=outx);
+// Si zy=1 entonces hace y=0
+	Mux16(a=y, b=false, sel=zy, out=y1);
+// Si ny=1 entonces hace y=!y
+	Not16(in=y1, out=ny1);
+	Mux16(a=y1, b=ny1, sel=ny, out=outy);
+// Hace & de x e y
+	And16(a=outx,b=outy, out=andxy);
+// Hace + de x e y
+        Add16(a=outx,b=outy,out=sumxy); 
+// Si f=1 entonces out=x+y
+	Mux16(a=andxy, b=sumxy, sel=f, out=w1);
+// Si no=1 entonces out=!out
+	Not16(in=w1, out=nw1);
+	Mux16(a=w1, b=nw1, sel=no, out=w2);
+
+// Si out=0 entonces zr=1
+// Compara los 16 elementos de la salida, para ver si son todos ceros
+	Or16Way(in=w2, out=tc);
+// Finalmente, zr=1 si out=0
+	Mux(a=true, b=false, sel=tc, out=zr);
+// Si out<0 entonces ng=1
+// Chequea que el primer bit de la salida sea 1
+	Neg(in=w2, out=neg);
+// Si el primer bit es 1, entonces out<0, luego ng=1
+	Mux(a=false, b=true, sel=neg, out=ng); 
+// Finalmente da la salida
+	Or16(a=w2, b=false, out=out);
+
 }

@@ -1,0 +1,12 @@
+
+
+
+CHIP Prueba {
+	IN a, b, zx
+	OUT out
+	
+
+	PARTS:
+		Mux(a=a, b=false, sel=zx, out=out);
+
+}

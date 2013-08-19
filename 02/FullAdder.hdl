@@ -24,5 +24,5 @@ CHIP FullAdder {
 //	Xor(a=w, b=c, out=sum);
 //	And(a=a, b=b, out=w1); // no da el carry!!
 //	And(a=w1, b=c, out=carry);
-    // Put your code here.
+ 
 }

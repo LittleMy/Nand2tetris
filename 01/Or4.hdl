@@ -1,0 +1,33 @@
+
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/01/And16.hdl
+
+/**
+ * 4-bit-wise Or gate: for i = 0..3: out[i] = a[i] And b[i]
+ */
+
+CHIP Or4 {
+    IN a[4], b[4];
+    OUT out[4];
+
+    PARTS:
+
+	Nand(a=a[0], b=a[0], out=w0);
+        Nand(a=a[1], b=a[1], out=w1);
+        Nand(a=a[2], b=a[2], out=w2);
+        Nand(a=a[3], b=a[3], out=w3);
+	Nand(a=b[0], b=b[0], out=v0);
+        Nand(a=b[1], b=b[1], out=v1);
+        Nand(a=b[2], b=b[2], out=v2);
+        Nand(a=b[3], b=b[3], out=v3);
+    	Nand(a=w0, b=v0, out=out[0]);
+        Nand(a=w1, b=v1, out=out[1]);
+	Nand(a=w2, b=v2, out=out[2]);
+	Nand(a=w3, b=v3, out=out[3]);
+        // Nand(a=a[0..3], b=a[0..3], out=w1[0..3]);
+	// Nand(a=b[0..3], b=b[0..3], out=w2[0..3]);
+	// Nand(a=w1[0..3], b=w2[0..3], out=out[0..3]);  // Esto no me funcionó y no entiendo xq
+
+}

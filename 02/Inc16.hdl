@@ -13,5 +13,5 @@ CHIP Inc16 {
     OUT out[16];
 
     PARTS:
-    // Put your code here.
+    ALU(x=in, y=false, zx=false, nx=true, zy=true, ny=true, f=true, no=true, out=out);
 }
